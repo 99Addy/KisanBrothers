@@ -10,10 +10,10 @@
 }
 
 .header_logo{
-    width: 100px;
+    width: 170px;
     object-fit: contain;
     margin: 0 20px;
-    margin-top: 10px;
+    margin-top: 7px;
 }
 
 .header_search{

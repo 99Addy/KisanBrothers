@@ -3,7 +3,7 @@ import React from 'react';
 import './Product.css';
 import { useStateValue } from './StateProvider';
 
-function Product({id,title,price,image,rating}) {
+function Product({id,title,price,image,quantity,unit,rating}) {
 
     const [{basket}, dispatch] = useStateValue();
 
@@ -15,7 +15,9 @@ function Product({id,title,price,image,rating}) {
            title: title,
            image: image,
            price: price,
-           rating: rating,
+           qty: quantity,
+           unit: unit,
+           rating: rating
          },
        });
   }; 
@@ -23,14 +25,14 @@ function Product({id,title,price,image,rating}) {
   return (
     <div className='product'>
         <div className="product_info">
-            <p>{title}</p>
+            <p><strong>{title.toUpperCase()}</strong></p>
             <p className="product_price">
-                <small>$</small>
+                <large>₹ </large>
                 <strong>{price}</strong>
             </p>
-            <div className="product_rating">
-                {Array(rating).fill().map((_,i) => (<p>*</p>))}
-            </div>
+            <p className='product_qty'>
+                <large>{quantity + " " + unit}</large>
+            </p>
         </div>
 
         <img src={image} alt="" />

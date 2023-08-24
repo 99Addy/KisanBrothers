@@ -21,7 +21,7 @@ function Header() {
         
         <Link to='/'>
             <img className='header_logo'
-            src='https://pngimg.com/uploads/amazon/amazon_PNG25.png'/>
+            src='https://cloud.appwrite.io/v1/storage/buckets/Dawai-storage/files/KB_logo2/view?project=KisanBrothers&mode=admin'/>
         </Link>
 
         <div className='header_search'>

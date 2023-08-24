@@ -43,36 +43,55 @@ function Home() {
             src='https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg' alt=''/>
 
             <div className="home_row">
-              {data.map((ele) => (
+              {data.slice(0,5).map((ele) => (
                 <Product
                   id={ele['$id'] + 1}
                   title={ele['$id']}
                   image={ele['url']}
                   price={ele['mrp']}
-                  rating={4}
+                  quantity={ele['qty']}
+                  unit={ele['unit']}
                 />
               ))}
               </div>
 
             <div className="home_row">
-              <Product id="12321341" title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer withK-beater, Dough Hook and Whisk, 5 Litre Glass Bowl" image="https://m.media-amazon.com/images/I/51WIKlio9qL.jpg" price='29.99' rating={4}/>
-              
-              <Product id='49538094' title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer withK-beater, Dough Hook and Whisk, 5 Litre Glass Bowl" price={239.0} reating={4}
-              image="https://m.media-amazon.com/images/I/51WIKlio9qL.jpg"/>
+              {data.slice(5,7).map((ele) => (
+                  <Product
+                    id={ele['$id'] + 1}
+                    title={ele['$id']}
+                    image={ele['url']}
+                    price={ele['mrp']}
+                    quantity={ele['qty']}
+                    unit={ele['unit']}
+                  />
+                ))}
             </div>
     
             <div className="home_row">
-            <Product id='49538094' title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer withK-beater, Dough Hook and Whisk, 5 Litre Glass Bowl" price={239.0} reating={4}
-            image="https://m.media-amazon.com/images/I/51WIKlio9qL.jpg"/>
-            <Product id='49538094' title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer withK-beater, Dough Hook and Whisk, 5 Litre Glass Bowl" price={239.0} reating={4}
-            image="https://m.media-amazon.com/images/I/51WIKlio9qL.jpg"/>
-            <Product id='49538094' title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer withK-beater, Dough Hook and Whisk, 5 Litre Glass Bowl" price={239.0} reating={4}
-            image="https://m.media-amazon.com/images/I/51WIKlio9qL.jpg"/>
+              {data.slice(7,10).map((ele) => (
+                    <Product
+                      id={ele['$id'] + 1}
+                      title={ele['$id']}
+                      image={ele['url']}
+                      price={ele['mrp']}
+                      quantity={ele['qty']}
+                      unit={ele['unit']}
+                    />
+                  ))}
             </div>
     
             <div className="home_row">
-            <Product id='49538094' title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer withK-beater, Dough Hook and Whisk, 5 Litre Glass Bowl" price={239.0} reating={4}
-            image="https://m.media-amazon.com/images/I/51WIKlio9qL.jpg"/>
+              {data.slice(10).map((ele) => (
+                    <Product
+                      id={ele['$id'] + 1}
+                      title={ele['$id']}
+                      image={ele['url']}
+                      price={ele['mrp']}
+                      quantity={ele['qty']}
+                      unit={ele['unit']}
+                    />
+                  ))}
             </div>
         </div> 
     </div>
