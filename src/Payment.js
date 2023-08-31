@@ -7,7 +7,8 @@ import {CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './reducer';
 import axios from './axios';
-
+import { client } from './appwrite-initialize';
+import { Databases, ID } from 'appwrite';
 
 function Payment() {
     const navigate = useNavigate();
@@ -24,6 +25,33 @@ function Payment() {
     const [succeeded, setSucceeded] = useState(false);
 
     const [clientSecret, setClientSecret] = useState('');
+
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+
+    const databases = new Databases(client);
+
+    const saveUserData = async (e) => {
+        databases.createDocument(
+            '64f0694605540a4146d6',
+            '64f06998945a49bf1a50',
+             user.userId,
+             {Name: name,
+             Address: address,
+             uid: user.userId}
+        ).then(function (res){
+            console.log(res);
+        }, function(error) {
+            console.log(error);
+            databases.updateDocument(
+                '64f0694605540a4146d6',
+                '64f06998945a49bf1a50',
+                user.userId,
+                {Name: name,
+                Address: address}
+            )
+        })
+    }
 
     useEffect(() => {
         //useEffect runs everytime the basket changes
@@ -61,6 +89,7 @@ function Payment() {
         })
     }
 
+
     const handleChange = event => {
         //Listen for changes in the card element
         //and display any error if there are any error
@@ -80,9 +109,16 @@ function Payment() {
                     <h3>Delivery address</h3>
                 </div>
                 <div className='payment_address'>
-                    <p>{user?.email}</p>
+                    {/* <p>{user?.email}</p>
                     <p>123, Tagore</p>
-                    <p>Sironj M.P.</p>
+                    <p>Sironj M.P.</p> */}
+                    <input type="text" placeholder="Name"  value={name} style={{width: 500, height: 30}}
+                     onChange={e => setName(e.target.value)}/>
+
+                    <input type="text" placeholder="Address" value={address} style={{width: 500, height: 30}}
+                     onChange={e => setAddress(e.target.value)}/>
+
+                     <button className='payment_saveButton' onClick={saveUserData}>Save</button>
                 </div>
             </div>
 
@@ -121,7 +157,7 @@ function Payment() {
                             value={getBasketTotal(basket)} //value as prop homework
                             displayType={'text'}
                             thousandSeparator={true}
-                            prefix={'$'} /> 
+                            prefix={'₹'} /> 
 
                             <button disabled={processing || disabled || succeeded}>
                                 <span >{processing ?  <p>Processing</p>: 'Buy Now'}</span>

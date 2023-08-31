@@ -8,9 +8,9 @@
 
 .login_logo{
     object-fit: contain;
-    width: 100px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 200px;
+    /* margin-top: 20px; */
+    /* margin-bottom: 20px; */
     margin-right: auto;
     margin-left: auto;
 }
@@ -57,6 +57,15 @@
 }
 
 .login_registerButton{
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: darkgray;
+}
+
+.seller_signInButton{
     margin-top: 10px;
     width: 100%;
     height: 30px;

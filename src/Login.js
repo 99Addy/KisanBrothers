@@ -1,35 +1,83 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from './firebase';
-import './Login.css'
+// import { auth } from './firebase';
+import './Login.css';
+import { client } from './appwrite-initialize';
+import { Account, ID } from 'appwrite';
+import { useStateValue } from './StateProvider';
 
 function Login() {
     const navigate = useNavigate();
 
-    const signIn = e => {
-        e.preventDefault(); //prevent refreshing
+    const [{basket, user}, dispatch] = useStateValue();
 
-        auth
-            .signInWithEmailAndPassword(email,password)
-            .then((auth) =>{
-                navigate('/')
-            })
-            .catch(error => alert(error.message))
-    }
+    // const signIn = e => {
+    //     e.preventDefault(); //prevent refreshing
+
+    //     auth
+    //         .signInWithEmailAndPassword(email,password)
+    //         .then((auth) =>{
+    //             navigate('/')
+    //         })
+    //         .catch(error => alert(error.message))
+    // }
+
+    // const register = e => {
+    //     e.preventDefault();
+
+    //     auth
+    //         .createUserWithEmailAndPassword(email, password)
+    //         .then((auth) => {
+    //             //if successfully created
+    //             console.log(auth);
+    //             if(auth){
+    //                 navigate('/');
+    //             } 
+    //         })
+    //         .catch(error => alert(error.message))
+    // }
+
+    const account = new Account(client);
+
+    const signIn = e => {
+      e.preventDefault(); //prevent refreshing
+
+      account.createEmailSession(
+        email,
+        password
+      )
+      .then(function(response) {
+        console.log("The login is",response);
+        dispatch({
+
+        // DISPATCH shoots information about user into the data layer i.e, context api
+  
+          type: 'SET_USER',
+          user: response
+        })
+        navigate('/')
+      }, function(error) {
+        console.log(error);
+      });
+  }
 
     const register = e => {
-        e.preventDefault();
+        // e.preventDefault();
 
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((auth) => {
-                //if successfully created
-                console.log(auth);
-                if(auth){
-                    navigate('/');
-                } 
-            })
-            .catch(error => alert(error.message))
+        account.create(
+          ID.unique(),
+          email,
+          password
+        )
+        .then(function(response) {
+          console.log(response);
+        }, function(error) {
+          console.log(error);
+        });
+    }
+
+    const seller_login = e => {
+      
     }
 
     const [email, setEmail] = useState('');
@@ -38,7 +86,7 @@ function Login() {
   return (
     <div className='login'>
       <Link to='/'>
-        <img src='https://germainmaureau.com/app/uploads/2020/05/Amazon-logo.png' className='login_logo'/>
+        <img src='https://cloud.appwrite.io/v1/storage/buckets/Dawai-storage/files/KB_logo/view?project=KisanBrothers&mode=admin' className='login_logo'/>
       </Link>
 
       <div className='login_container'>
@@ -54,10 +102,12 @@ function Login() {
             <button type='submit' onClick={signIn} className='login_signInButton'>Sign In</button>
         </form>
         <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati dolore modi doloremque voluptatibus minus molestiae, dicta error laudantium nulla dolorum, vitae nam! Optio minus ab veritatis sapiente earum at tenetur hic vitae.
+          By continuing, you agree to Kisan Brothers's Conditions of Use and Privacy Notice.
         </p>
         
-        <button className='login_registerButton' onClick={register} >Create your Amazon Account</button>
+        <button className='login_registerButton' onClick={register} >Create your Account</button>
+
+        <button type='submit' className='seller_signInButton' onClick={seller_login}>Seller Sign In</button>
       </div>
     </div>
   )

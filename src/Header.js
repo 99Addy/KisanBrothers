@@ -4,15 +4,24 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Link } from 'react-router-dom';
 import { useStateValue } from './StateProvider';
-import { auth } from './firebase';
+// import { auth } from './firebase';
+import { client } from './appwrite-initialize';
+import { Account } from 'appwrite';
 
 function Header() {
 
     const [{basket, user}, dispatch] = useStateValue();
 
+    const account = new Account(client);
+
     const handleAuthentication = () => {
         if(user) {
-            auth.signOut();
+            account.deleteSession('current');
+            console.log("Logout successfull");
+            dispatch({
+                type: 'SET_USER',
+                user: null
+              })
         }
     }
 
@@ -34,7 +43,7 @@ function Header() {
            <Link to={!user && '/login'}>
             <div  onClick={handleAuthentication} className='header_option'>
                 <span className='header_optionLine1'>
-                    {user ? user.email : 'Hello Guest'}
+                    {user ? user.providerUid : 'Hello Guest'}
                 </span>
 
                 <span className='header_optionLine2'>

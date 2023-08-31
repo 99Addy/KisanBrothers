@@ -8,7 +8,17 @@ import { useNavigate } from 'react-router-dom';
 function Subtotal() {
 
   const navigate = useNavigate();
-  const [{basket}, dispatch] = useStateValue();
+  const [{basket, user}, dispatch] = useStateValue();
+
+  const handlePaymentClick = () => {
+    if (user) {
+      navigate('/payment');
+    } else {
+      navigate('/login');
+      console.log("Create an account first")
+      // Handle the case where the user is not logged in, e.g., show a login modal.
+    }
+  };
 
   return (
     <div className='subtotal'>
@@ -27,9 +37,9 @@ function Subtotal() {
         value={getBasketTotal(basket)} //value as prop homework
         displayType={'text'}
         thousandSeparator={true}
-        prefix={'$'} /> 
+        prefix={'₹'} /> 
 
-      <button onClick={e => navigate('/payment')} >Proceed to checkout</button>
+      <button onClick={handlePaymentClick}> Proceed to checkout </button>
     </div>
   )
 }

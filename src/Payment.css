@@ -25,6 +25,23 @@
     flex: 0.2;
 }
 
-.payment_address, .payment_items, .payment_details {
+.payment_address{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment_items, .payment_details {
     flex: 0.8;
+}
+
+.payment_saveButton {
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    background: #f0c14b;
+    border: 1px solid;
+    border-color: #a88734 #9c7e31 #846a29 ;
+    color: #111;
 }
