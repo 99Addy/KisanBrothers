@@ -1,7 +1,3 @@
-// const { Databases } = require('appwrite');
-// const { fetchImg } = require('./appwrite-storage')
-// const client = require('./appwrite-initialize')
-
 import { Databases } from 'appwrite';
 import { fetchImg } from './appwrite-storage'
 import { client } from './appwrite-initialize';
@@ -27,19 +23,4 @@ async function fetchData() {
     return arr;
 }
 
-// data.then(function (response) {
-//     arr = response['documents']
-//     console.log(arr);
-
-// }, function (error) {
-//     console.log("Error:",error);
-// });
-
 export {fetchData}
-// module.exports = {fetchData}
-
-// promise.then(function (response) {
-//     console.log(response);
-// }, function (error) {
-//     console.log("Error:",error);
-// });

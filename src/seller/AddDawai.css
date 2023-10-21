@@ -1,0 +1,94 @@
+.upload_dawai {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .dawai_name {
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .dawai_search {
+    display: flex;
+    flex: 1;
+    align-items:center;
+    border: 1px solid #000;
+  }
+
+  .dawai_searchInput{
+    height: 10px;
+    padding: 10px;
+    padding-top: 11px;
+    width: 100%;
+  }
+
+  .dropdown{
+    list-style-type: none;
+  }
+
+  ul.dropdown-item {
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+  }
+  
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  li:hover {
+    background: #f0f0f0;
+  }
+  
+  .upload_section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .upload_container{
+    width: 500px; /* Adjust the width to your desired size */
+    height: 500px; /* The same height as the width to make it a square */
+    border: 1px solid #000;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .upload_image{
+    /* margin-top: -100px; */
+    width: 200px;
+    cursor: pointer;
+  }
+
+  .upload_image_button{
+    margin-top: 100px;
+    width: 200px;
+    height: 50px;
+    background: #f0c14b;
+    border: 1px solid;
+    border-color: #a88734 ;
+    color: #111;
+    cursor: pointer;
+  }
+  
+  input[type="file"] {
+    margin-bottom: 20px;
+  }
+  

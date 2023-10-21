@@ -5,7 +5,10 @@ import Home from './Home';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Checkout from './Checkout';
 import Login from './Login';
-import Seller from './Seller';
+import SellerHeader from './seller/SellerHeader';
+import Stock from './seller/Stock';
+import AddDawai from './seller/AddDawai';
+import SellerRegister from './seller/SellerRegister';
 import { useEffect } from 'react';
 // import { auth } from './firebase';
 import { client } from './appwrite-initialize';
@@ -49,27 +52,27 @@ function App() {
 
     const account = new Account(client);                                  //NOTE  NOTE    NOTE  NOTE    NOTE  NOTE
                                                                           //This has become redundant as we have dispatched actions in header and login.js
-    account.get()
-    .then(function(response) {
-      console.log("The logged user is", response);
+    // account.get()
+    // .then(function(response) {
+    //   console.log("The logged user is", response);
 
-      dispatch({
+    //   dispatch({
 
-        // DISPATCH shoots information about user into the data layer i.e, context api
+    //     // DISPATCH shoots information about user into the data layer i.e, context api
 
-        type: 'SET_USER',
-        user: response
-      })
+    //     type: 'SET_USER',
+    //     user: response
+    //   })
 
-    }, function(error) {
-      console.log("The logging error is", error);
+    // }, function(error) {
+    //   console.log("error is", error);
 
-      dispatch({
-        type: 'SET_USER',
-        user: null
-      })
+    //   dispatch({
+    //     type: 'SET_USER',
+    //     user: null
+    //   })
       
-    });
+    // });
 
   } , [])
     return ( 
@@ -90,7 +93,9 @@ function App() {
               </Elements>
               </>}/>
               
-              <Route path='/seller' element={<Seller/>}> </Route>
+              <Route path='/seller_stock' element={<><SellerHeader/><Stock/></>}> </Route>
+              <Route path='/add_seller_dawai' element={<><SellerHeader/><AddDawai/></>}> </Route>
+              <Route path='/seller_login' element={<SellerRegister/>}> </Route>
             </Routes>
           </div>
         </Router>

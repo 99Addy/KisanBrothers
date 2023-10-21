@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -14,6 +14,19 @@ function Header() {
 
     const account = new Account(client);
 
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+    // useEffect(() => {
+    //     const storedUserData = localStorage.getItem('userData');
+    
+    //     if (storedUserData) {
+    //       const userData = JSON.parse(storedUserData);
+          
+    //       // Use the user data in your component
+    //       console.log('User data from local storage:', userData);
+    //     }
+    //   }, []);
+    
     const handleAuthentication = () => {
         if(user) {
             account.deleteSession('current');
@@ -43,7 +56,7 @@ function Header() {
            <Link to={!user && '/login'}>
             <div  onClick={handleAuthentication} className='header_option'>
                 <span className='header_optionLine1'>
-                    {user ? user.providerUid : 'Hello Guest'}
+                    {user  ? storedUserData.providerUid  : 'Hello Guest'}
                 </span>
 
                 <span className='header_optionLine2'>

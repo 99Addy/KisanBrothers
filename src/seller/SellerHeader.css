@@ -1,0 +1,44 @@
+.header{
+    height: 55px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    background-color: #131921;
+    position: sticky,relative;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.header_logo{
+    width: 170px;
+    object-fit: contain;
+    position: absolute;
+    left: -20px;
+    top: -39px;
+    margin-right: 100px;
+}
+
+.header_options{
+        display: flex;
+        align-items: center;
+        margin-left: 250px;
+        gap: 42px;
+}
+
+.header_stocks_option{
+    color:aliceblue;
+    /* margin-left:  100px; */
+}
+
+.header_dawai_adding_option{
+    color:aliceblue;
+    /* margin-left:  -300px; */
+}
+
+.header_seller_name{
+    position: absolute;
+    right: 0;
+    color:aliceblue;
+    margin: 0 10px;
+}
